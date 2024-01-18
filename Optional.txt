@@ -1,0 +1,36 @@
+public <U> Optional<U> map(Function<? super T, ? extends U> mapper) {
+    Objects.requireNonNull(mapper);
+    if (isEmpty()) {
+        return empty();
+    } else {
+        return Optional.ofNullable(mapper.apply(value));
+    }
+}
+The provided code snippet represents the map method in a simplified version of the Optional class, which is a part of the Java standard library.
+ The map method is used to transform the value inside the Optional if it is present.
+
+ Method Signature:
+
+public <U> Optional<U> map(Function<? super T, ? extends U> mapper): This declares an instance method named map that takes a Function as an argument. The function is used to transform the value inside the Optional.
+
+Type Parameters:
+
+<U>: The method is generic and introduces a new type parameter U that represents the type of the result after applying the mapping function.
+
+Parameters:
+
+Function<? super T, ? extends U> mapper: The mapping function that transforms the value of type T to a value of type U.
+
+Null Check for Mapper:
+
+Objects.requireNonNull(mapper): This ensures that the mapping function (mapper) is not null. If it is null, a NullPointerException is thrown.
+
+Checking if Optional is Empty:
+
+if (isEmpty()) { return empty(); }: If the current Optional instance is empty (i.e., it doesn't contain a value), it returns an empty Optional (using the empty() method).
+
+Applying Mapping Function:
+
+return Optional.ofNullable(mapper.apply(value));: If the Optional is not empty, it applies the mapping function to the value inside the Optional using mapper.apply(value). It then wraps the result in a new Optional using Optional.ofNullable. If the result is null, it returns an empty Optional; otherwise, it returns an Optional containing the mapped value.
+
+In summary, the map method is used for transforming the value inside an Optional using a provided mapping function. It returns a new Optional containing the result of the transformation, or an empty Optional if the original Optional is empty.
